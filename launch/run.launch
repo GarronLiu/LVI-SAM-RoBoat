@@ -1,0 +1,20 @@
+<launch>
+    <arg name="rosbag" default="false" />
+    <!--- Robot State TF -->
+    <include file="$(find lvi_sam)/launch/include/module_robot_state_publisher.launch" />
+
+    <!--- Run Rviz-->
+    <include file="$(find lvi_sam)/launch/include/module_rviz.launch" />
+
+    <!--- SAM -->
+    <include file="$(find lvi_sam)/launch/include/module_sam_self.launch" />
+
+    
+    
+    <group if="$(arg rosbag)">
+    <node pkg="rosbag" type="record" name="bag_record" args="-o /lidar_bagfile/LVI-SAM.bag /velodyne_points /imu_data /galaxy_camera/image_raw"/>
+    </group>
+
+</launch>
+
+
