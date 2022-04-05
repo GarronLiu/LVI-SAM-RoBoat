@@ -9,7 +9,12 @@
     <!--- SAM -->
     <include file="$(find lvi_sam)/launch/include/module_sam_self.launch" />
 
-    
+    !--add Nav40 IMU node-->
+    <include file="$(find nav40_driver)/launch/nav40_vlp16.launch" />
+    <!--add galaxy camera node-->
+    <include file="$(find galaxy_camera)/launch/MER-301.launch" />
+    <!--add velodyne_driver node-->
+    <include file="$(find velodyne_pointcloud)/launch/VLP16_points.launch" />
     
     <group if="$(arg rosbag)">
     <node pkg="rosbag" type="record" name="bag_record" args="-o /lidar_bagfile/LVI-SAM.bag /velodyne_points /imu_data /galaxy_camera/image_raw"/>

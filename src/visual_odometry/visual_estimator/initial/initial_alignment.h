@@ -81,11 +81,15 @@ public:
     odometryRegister(ros::NodeHandle n_in):
     n(n_in)
     {
-       q_lidar_to_cam = tf::createQuaternionFromRPY(L_I_RX, L_I_RY,L_I_RZ); // rotate orientation // mark: camera - lidar
+     /**
+    * @brief 修改的地方
+    * 
+   */
+        q_lidar_to_cam = tf::createQuaternionFromRPY(L_I_RX, L_I_RY,L_I_RZ); // rotate orientation // mark: camera - lidar
+        
         Eigen::AngleAxisd roll_vector(L_I_RX,Eigen::Vector3d::UnitX());
         Eigen::AngleAxisd pitch_vector(L_I_RY,Eigen::Vector3d::UnitY());
         Eigen::AngleAxisd yaw_vector(L_I_RZ,Eigen::Vector3d::UnitZ());
-        
         Eigen::Quaterniond rotation_vector = yaw_vector*pitch_vector*roll_vector;
         q_lidar_to_cam_eigen = Eigen::Quaterniond ( rotation_vector );// rotate position by pi, (w, x, y, z) // mark: camera - lidar
         // pub_latest_odometry = n.advertise<nav_msgs::Odometry>("odometry/test", 1000);
