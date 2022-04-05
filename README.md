@@ -7,8 +7,13 @@ This repository contains code for a lidar-visual-inertial odometry and mapping s
 </p>
 
 ---
-# 最新修改
-  -修改了代码内部外参转换问题，并能通过yaml文件定义设备的外参数据，从而部署到自己的设备上。
+# 解决问题
+
+  - 原作代码存在修改lidar->cam的外参不生效的问题，原因是代码中用于旋转变换的四元数被设置为常数，只能适配原作自身的数据集。
+  
+# 主要修改
+
+  - 修改了代码内部外参转换问题，并能通过yaml文件定义设备的外参数据，从而部署到自己的设备上。
 
 ## Dependency
 
